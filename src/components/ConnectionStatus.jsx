@@ -1,7 +1,6 @@
-import { Wifi, WifiOff, RefreshCw } from 'lucide-react';
+import { Wifi, WifiOff } from 'lucide-react';
 
-export default function ConnectionStatus({ error, loading, lastUpdated, onRefresh }) {
-  const connected = !error;
+export default function ConnectionStatus({ error, connected, lastUpdated }) {
   const timeStr = lastUpdated
     ? lastUpdated.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' })
     : '--';
@@ -16,23 +15,16 @@ export default function ConnectionStatus({ error, loading, lastUpdated, onRefres
         }`}
       >
         {connected ? <Wifi size={12} /> : <WifiOff size={12} />}
-        {connected ? 'Connected' : 'Disconnected'}
+        {connected ? 'Live' : 'Disconnected'}
       </div>
 
       {error && (
-        <span className="hidden text-xs text-red-500 sm:inline">{error}</span>
+        <span className="hidden max-w-[160px] truncate text-xs text-red-500 sm:inline" title={error}>
+          {error}
+        </span>
       )}
 
       <span className="text-xs text-gray-500">Updated {timeStr}</span>
-
-      <button
-        onClick={onRefresh}
-        disabled={loading}
-        title="Refresh now"
-        className="rounded-lg p-1.5 text-gray-500 transition hover:bg-gray-800 hover:text-gray-300 disabled:opacity-40"
-      >
-        <RefreshCw size={14} className={loading ? 'animate-spin' : ''} />
-      </button>
     </div>
   );
 }
