@@ -42,7 +42,8 @@ const char* TOPIC_SERVO   = "esp32/servo/command";
 #define DHT_TYPE      DHT22
 #define FLAME_PIN     34    // active-LOW: LOW = flame detected
 #define GAS_PIN       35    // analog MQ-2/MQ-5
-#define MOVEMENT_PIN  27    // PIR: HIGH = motion
+#define 
+  27    // PIR: HIGH = motion
 #define SERVO_PIN     18
 
 // ─── Thresholds ───────────────────────────────────────────────────────────────
