@@ -22,9 +22,12 @@ app.get('/api/events', (req, res) => {
   res.setHeader('Cache-Control',      'no-cache');
   res.setHeader('Connection',         'keep-alive');
   res.setHeader('X-Accel-Buffering',  'no');
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setTimeout(0);
+  req.socket.setTimeout(0);
   res.flushHeaders();
 
-  const heartbeat = setInterval(() => res.write(': ping\n\n'), 25_000);
+  const heartbeat = setInterval(() => res.write(': ping\n\n'), 15_000);
   const clientId  = addSseClient(res);
 
   req.on('close', () => {
