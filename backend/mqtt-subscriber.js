@@ -15,6 +15,8 @@ const clients = new Map();
 let clientIdSeq = 0;
 let lastSnapshot = null;
 
+export function getLastSnapshot() { return lastSnapshot; }
+
 export function addSseClient(res) {
   const id = ++clientIdSeq;
   clients.set(id, res);
